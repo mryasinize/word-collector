@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings</title>
+  </head>
+  <body style="margin: 0; padding: 0">
+    <div
+      id="settingsContainer"
+      style="width: 450px; height: 200px; padding: 15px; display: none"
+    >
+      <header style="margin-bottom: 15px">
+        <div
+          id="header"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <div style="font-weight: bold; font-size: 20px">
+            <span>Settings</span>
+          </div>
+          <div style="display: none; gap: 10px" id="actionButtonContainer">
+            <button id="cancel-btn">Cancel</button>
+            <button id="save-btn">Save</button>
+          </div>
+          <button
+            id="edit-btn"
+            style="
+              background: none;
+              text-decoration: underline;
+              border: none;
+              cursor: pointer;
+              color: blue;
+              font-size: 18px;
+            "
+          >
+            Edit
+          </button>
+        </div>
+      </header>
+      <div
+        style="width: 100%; display: flex; flex-direction: column; gap: 15px"
+      >
+        <div style="display: flex; flex-direction: column">
+          <div style="font-size: 16px; margin-bottom: 7px">
+            <span>Spreadsheet Id</span>
+          </div>
+          <input
+            readonly
+            id="spreadsheet-id"
+            style="
+              font-size: 16px;
+              padding: 10px;
+              border-radius: 7px;
+              border: 1px solid #d5d5d5;
+              outline: none;
+              cursor: not-allowed;
+            "
+            type="text"
+          />
+        </div>
+        <div style="display: flex; flex-direction: column">
+          <div style="font-size: 16px; margin-bottom: 7px">
+            <span>Sheet Id</span>
+          </div>
+          <input
+            readonly
+            id="sheet-id"
+            style="
+              font-size: 16px;
+              padding: 10px;
+              border-radius: 7px;
+              border: 1px solid #d5d5d5;
+              outline: none;
+              cursor: not-allowed;
+            "
+            type="number"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      id="loadingMessage"
+      style="
+        width: 450px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+      "
+    >
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

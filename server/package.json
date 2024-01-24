@@ -1,0 +1,36 @@
+{
+  "name": "word-collector-server",
+  "version": "1.0.0",
+  "description": "This is a node js rest api server for adding, removing, modifying collected words to google sheet",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Yasin Ahmed",
+  "license": "Apache-2.0 license",
+  "bin": {
+    "index": "./server.js"
+  },
+  "pkg": {
+    "assets": [
+      "node_modules/vm2/**/*"
+    ],
+    "targets": [
+      "node18-win-x64"
+    ]
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "googleapis": "^126.0.1",
+    "puppeteer-core": "^21.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mryasinize/word-collector.git"
+  }
+}
