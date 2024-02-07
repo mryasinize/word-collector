@@ -5,8 +5,8 @@ This Chrome extension is a fun project I’ve been working on recently. The reas
 ### Key features
 
 - It can read, add, update, and delete words from my Google Sheets.
-- Now I can select subtitles from YouTube videos and can translate and save them in sheet while watching videos.
-- And btw, I also added a feature where I can select a text and search it on YouTube direcly (just select any text in browser, `right click` and you will see an option called `Seach YouTube for "[selected text]"` in context menu). I know it's irrelevant to this project but I needed it and it helps me a lot.
+- Now I can select subtitles from YouTube videos and can translate and save them in a sheet while watching videos.
+- And btw, I also added a feature where I can select a text and search it on YouTube directly (just select any text in the browser, `right-click` and you will see an option called `Seach YouTube for "[selected text]"` in context menu). I know it's irrelevant to this project but I needed it and it helps me a lot.
 
 ### Technologies
 
@@ -15,10 +15,10 @@ This Chrome extension is a fun project I’ve been working on recently. The reas
 
 ### Things that I got to learn
 
-- How to build a Chrome extention from scratch and how it works
-- How to scrap the web using `puppeteer-core` library
-- How to work with `MutationObserver` API
-- How to work with `Google Workspace` APIs specially with `Google Sheet` API using `googleapis` library in Nodejs and how to use a `service account` to interact with them
+- How to build a Chrome extension from scratch and how it works
+- How to scrap the web using the `puppeteer-core` library
+- How to work with the `MutationObserver` API
+- How to work with `Google Workspace` APIs especially with `Google Sheet` API using `googleapis` library in Nodejs and how to use a `service account` to interact with them
 
 ### Demo video
 
@@ -38,15 +38,15 @@ I'm going to build a windows application using Python or Electron.js which will 
 
 ### Prerequisites
 
-- Should know HTML, CSS, JavaScript and basic DOM manipulations
-- Bacics of [Chrome extension development](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world)
+- Should know HTML, CSS, JavaScript, and basic DOM manipulations
+- Basics of [Chrome extension development](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world)
 - Should know Nodejs and Express web framework
 - [How to use Google Sheet API with a service account](https://medium.com/@shkim04/beginner-guide-on-google-sheet-api-for-node-js-4c0b533b071a)
-- Basics of web scraping using `puppeteer-core` library
+- Basics of web scraping using the `puppeteer-core` library
 
 ### Setting up extension locally
 
-To run the extension locally, first go to [chrome://extensions](chrome://extensions) page and turn on `Developer mode` and then click `Load unpacked` button to upload the _extension_ folder.
+To run the extension locally, first go to [chrome://extensions](chrome://extensions) page and turn on `Developer mode` and then click the `Load unpacked` button to upload the _extension_ folder.
 
 ### Setting up the server
 
@@ -56,9 +56,9 @@ Navigate to the _server_ folder and run `npm run install` to install all the nec
 
 For the extension, you can upload it on the Chrome web store or use it locally. And for the server, it's up to you how you want to run it. What I did was I converted the server into an executable using [pkg](https://github.com/vercel/pkg?tab=readme-ov-file) and had it run on startup by making it a windows service using [nssm](https://nssm.cc/). And that is the recommended way.
 
-### How to convert into executable
+### How to convert into an executable
 
-First install `pkg` by running `npm install -g pkg` command in the terminal. Navigate to the _server_ folder and add these lines to `pakage.json`
+First, install `pkg` by running `npm install -g pkg` command in the terminal. Navigate to the _server_ folder and add these lines to `pakage.json`
 
 ```
 "bin": {
@@ -74,7 +74,7 @@ First install `pkg` by running `npm install -g pkg` command in the terminal. Nav
   }
 ```
 
-Now run `pkg .` and after some time, you'll see an exe file in the root directory of the _server_ folder. Remember, `settings.json` and `service-account-creds.json` files won't be packaged into executable. So if you don't move these files and convert the server into an exe then they have to be in the same root folder where the exe file is. Otherwise the extension will not work properly.
+Now run `pkg .` (if this does not work, run `pkg . --public`), and after some time, you'll see an exe file in the root directory of the _server_ folder. Remember, the `settings.json` and `service-account-creds.json` files won't be packaged into executable. So if you don't move these files and convert the server into an exe then they have to be in the same root folder where the exe file is. Otherwise, the extension will not work properly.
 ```
 WordCollector/
  ├── word-collector-server.exe
