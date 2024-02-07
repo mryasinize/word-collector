@@ -7,8 +7,8 @@ class TranslationScraper {
     /** Your Chrome executable path */
     static chromeExecutablePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 
-    /** The X-path of translation text container */
-    static translationContainerXpath = "::-p-xpath(/html/body/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[3]/c-wiz[2]/div[1]/div[7]/div/div[1]/span[1]/span/span)";
+    /** The selector of translation text container */
+    static translationContainerSelector = ".sciAJc > .QcsUad .ryNqvb";
 
     /** Scrapes translation from Google Translate website 
      * @param {string} word The word to translate
@@ -17,18 +17,18 @@ class TranslationScraper {
      * @returns {{word:string, translation:string, moreTranslations:string[]}} Scraped data from website
     */
     static async getTranslation(word, includeMoreTranslations) {
+
         const browser = await puppeteer.launch({
             executablePath: TranslationScraper.chromeExecutablePath
         });
+
         const page = await browser.newPage();
-
         await page.goto(TranslationScraper.targetWeb + word);
-        const translationContainer = await page.waitForSelector(TranslationScraper.translationContainerXpath);
+        await page.waitForSelector(TranslationScraper.translationContainerSelector);
 
-        const translation = await (await translationContainer.getProperty("textContent")).jsonValue();
+        const translation = await page.$eval(TranslationScraper.translationContainerSelector, translation => translation.textContent);
         const moreTranslations = includeMoreTranslations ? await page.$$eval('.s0ijVb .ryNqvb', translations => translations.map(translation => translation.textContent)) : [];
 
-        await translationContainer.dispose();
         await browser.close();
 
         return {
