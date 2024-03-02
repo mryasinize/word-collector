@@ -63,6 +63,24 @@ const getWordController = async (req, res, next) => {
     }
 }
 
+const getRandomWordsController = async (req, res, next) => {
+    try {
+        const { count } = req.query;
+        const randomWordsInfo = await SheetAPI.getRandomWords(count);
+
+        if (randomWordsInfo.error) {
+            throw randomWordsInfo.error;
+        }
+
+        return res.json({
+            success: true,
+            randomWordsInfo: randomWordsInfo
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
 const addWordController = async (req, res, next) => {
     try {
         const { payload } = req.body;
@@ -135,4 +153,4 @@ const deleteWordController = async (req, res, next) => {
     }
 }
 
-module.exports = { getSettingsController, updateSettingsController, getWordController, addWordController, updateWordController, deleteWordController, getTranslationController }
+module.exports = { getSettingsController, updateSettingsController, getWordController, addWordController, getRandomWordsController, updateWordController, deleteWordController, getTranslationController }

@@ -1,6 +1,7 @@
 const { google } = require("googleapis");
 const { Settings } = require("./settings");
 const { capitalizeFirstLetter } = require("../utils");
+const randomNumberGenerator = require("random-number-csprng");
 
 /** This class is for interacting with Google Sheet API */
 class SheetAPI {
@@ -116,6 +117,31 @@ class SheetAPI {
             }
 
             return wordInfo;
+
+        } catch (error) {
+            return { error: error.status === 404 ? Error("Invalid sheet info") : error }
+        }
+    }
+
+    /** Picks some random words from Sheet
+     * @param {number} count How many?
+     * 
+     * @returns {Array<Array<string>>} Array of random words
+     */
+    static async getRandomWords(count) {
+        try {
+            const randomWordsInfo = [];
+            const { spreadsheetId } = SheetAPI.getSettings();
+            const sheetName = await SheetAPI.getSheetName();
+            const sheetColumns = await SheetAPI.sheets.values.get({ spreadsheetId, range: `${sheetName}!A2:B`, majorDimension: "ROWS" })
+            const sheetLength = sheetColumns.data.values.length;
+
+            for (let i = 0; i < parseInt(count); i++) {
+                const randomIndex = await randomNumberGenerator(0, sheetLength);
+                randomWordsInfo.push(sheetColumns.data.values[randomIndex]);
+            }
+
+            return randomWordsInfo;
 
         } catch (error) {
             return { error: error.status === 404 ? Error("Invalid sheet info") : error }

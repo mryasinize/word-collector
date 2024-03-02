@@ -1,21 +1,23 @@
 const { Router } = require('express');
-const { addWordController, deleteWordController, getSettingsController, getWordController, updateSettingsController, updateWordController, getTranslationController } = require('../controllers');
+const controllers = require('../controllers');
 
 const router = Router()
 
-router.get("/translate", getTranslationController)
+router.get("/translate", controllers.getTranslationController)
 
-router.get("/getSettings", getSettingsController)
+router.get("/getSettings", controllers.getSettingsController)
 
-router.put("/updateSettings", updateSettingsController)
+router.put("/updateSettings", controllers.updateSettingsController)
 
-router.get("/getWord", getWordController)
+router.get("/getWord", controllers.getWordController)
 
-router.post("/addWord", addWordController)
+router.get("/getRandomWords", controllers.getRandomWordsController)
 
-router.put("/updateWord", updateWordController)
+router.post("/addWord", controllers.addWordController)
 
-router.delete("/deleteWord", deleteWordController)
+router.put("/updateWord", controllers.updateWordController)
+
+router.delete("/deleteWord", controllers.deleteWordController)
 
 module.exports = router
 
